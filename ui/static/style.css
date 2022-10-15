@@ -7,19 +7,76 @@ html{
 h1{
     text-align: center;
 }
-.container{
-    
-    background-color:bisque;
+.header{
     display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
+    flex-direction: column;
+    height: 150px;
+}
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color:rgb(32, 35, 41);
 }
 .cards{
-    background-color: aquamarine;
-    
-    width:300px;
-    height: 300px;
-    margin:20px;
+    width: 500px;
+    height: 220px;
+    display: flex;
     border-radius: 10px;
+    overflow: hidden;
+    margin: 15px;
+    background-color: rgb(60, 62, 68);
+}
+.cards__image{
+    flex: 2 1 0%;
+    width: 100%;
+}
+.cards__image img{
+    height: 100%;
+    margin: 0;
+    opacity: 0.8;
+    object-position: center center;
+    object-fit: cover;
+    width: 100%;
+}
+.cards__contents{
+    margin: 0;
+    padding: 0;
+    flex:3 1 0%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cards__content__sections{
+    margin: 0;
+    padding: 0;
+}
+.cards__content__sections__members ul{
+    list-style: none;
+}
+.cards__content__sections__members li{
+    padding-left: 10px;
+    font-size: 14px;
+    color: white;
+}
+.cards__content__sections__name h2{
+    margin: 0;
+    margin-top: 5px;
+    padding: 0;
+    text-align: center;
+    color: white;
+}
+.cards__content__sections__name a{
+    text-decoration: none;
+}
+.cards__content__sections__members .members-label{
+    color: rgb(158, 158, 158);
+}
+.cards__content__sections__name h2:hover{
+    color: orange;
 }

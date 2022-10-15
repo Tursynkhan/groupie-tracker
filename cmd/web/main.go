@@ -23,7 +23,7 @@ type Artists struct {
 func main() {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", home)
-
+	mux.HandleFunc("/open", artist)
 	fileServer := http.FileServer(http.Dir("./ui/static"))
 	mux.Handle("/static", http.NotFoundHandler())
 	mux.Handle("/static/", http.StripPrefix("/static", fileServer))
@@ -47,6 +47,25 @@ func home(w http.ResponseWriter, r *http.Request) {
 	res := group()
 	// fmt.Println(res)
 	err = ts.Execute(w, res)
+	if err != nil {
+		log.Println(err.Error())
+		http.Error(w, "Internal Server Error", 500)
+	}
+}
+
+func artist(w http.ResponseWriter, r *http.Request) {
+	if r.URL.Path != "/open" {
+		http.NotFound(w, r)
+		return
+	}
+	ts, err := template.ParseFiles("./ui/html/artist.html")
+	if err != nil {
+		log.Println(err.Error())
+		http.Error(w, "Internal Server Error", 500)
+		return
+	}
+	res1 := group()
+	err = ts.Execute(w, res1)
 	if err != nil {
 		log.Println(err.Error())
 		http.Error(w, "Internal Server Error", 500)
