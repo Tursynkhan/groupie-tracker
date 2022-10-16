@@ -73,10 +73,12 @@ h1{
 }
 .cards__content__sections__name a{
     text-decoration: none;
+    cursor: pointer;
 }
 .cards__content__sections__members .members-label{
     color: rgb(158, 158, 158);
 }
 .cards__content__sections__name h2:hover{
     color: orange;
+    cursor: pointer;
 }

@@ -15,21 +15,14 @@
         {{range  .}}
         <div class="cards">
            <div class="cards__image">
-                <img src="{{.Image}}" alt="logo"> 
+               <a href="/open?id={{.Id}}"> <img src="{{.Image}}" alt="logo"> </a>
            </div>
            <div class="cards__contents">
                 <div class="cards__content__sections__name">
-                    <a href="/open" method="get">
-                        <h2>{{.Name}}</h2>
-                    </a>
+                        <a href="/open?id={{.Id}}">
+                            <h2>{{.Name}}</h2>
+                        </a> 
                 </div>
-                <!-- <div class="cards__content__sections__members">
-                    <ul><label class="members-label">Members:</label>
-                        {{range .Members}}
-                        <li>{{.}}</li>
-                        {{end}}
-                    </ul>
-                </div> -->
            </div>
         </div>
         {{end}}

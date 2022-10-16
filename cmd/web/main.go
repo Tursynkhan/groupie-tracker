@@ -6,18 +6,19 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"strconv"
 )
 
 type Artists struct {
-	Id           int
-	Image        string
-	Name         string
-	Members      []string
-	CreationDate int32
-	FirstAlbum   string
-	Locations    string
-	ConcertDates string
-	Relations    string
+	Id           int      `json:"id"`
+	Image        string   `json:"image"`
+	Name         string   `json:"name"`
+	Members      []string `json:"members"`
+	CreationDate int32    `json:"creationDate"`
+	FirstAlbum   string   `json:"firstAlbum"`
+	Locations    string   `json:"locations"`
+	ConcertDates string   `json:"concertDates"`
+	Relations    string   `json:"relations"`
 }
 
 func main() {
@@ -64,8 +65,18 @@ func artist(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Internal Server Error", 500)
 		return
 	}
-	res1 := group()
-	err = ts.Execute(w, res1)
+
+	id, err := strconv.Atoi(r.URL.Query().Get("id"))
+	if err != nil || id < 1 {
+		http.NotFound(w, r)
+		return
+	}
+
+	url := "https://groupietrackers.herokuapp.com/api/artists/" + strconv.Itoa(id)
+
+	res := idArtist(url)
+
+	err = ts.Execute(w, res)
 	if err != nil {
 		log.Println(err.Error())
 		http.Error(w, "Internal Server Error", 500)
@@ -93,4 +104,23 @@ func group() []Artists {
 	}
 	return artist
 	// fmt.Println(artist)
+}
+
+func idArtist(url string) Artists {
+	res1, err := http.Get(url)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer res1.Body.Close()
+
+	body, err := ioutil.ReadAll(res1.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+	var artist Artists
+	jsonErr := json.Unmarshal(body, &artist)
+	if jsonErr != nil {
+		log.Fatal(jsonErr)
+	}
+	return artist
 }
