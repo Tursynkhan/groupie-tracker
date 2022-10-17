@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/artist.css">
     <title>Artist</title>
 </head>
 <body>
@@ -11,7 +12,39 @@
         <h1>{{.Name}}</h1>
     </div>
     <div class="container">
-        {{.}}
+        <div class="date">
+            {{.CreationDate}}
+        </div>
+        <div class="album">
+            {{.FirstAlbum}}
+        </div>
+       <div class="members">
+         <ul>
+            <label>Members</label>
+            {{range .Members}}
+            <li>
+                {{.}}
+            </li>
+            {{end}}
+        </ul>
+            
+       </div>
+       <div class="locatioins">
+            {{range $k,$v :=$.DatesLocation}}
+                {{$k}}
+                <div class="dates">
+                    {{range $_,$q:= $v}}
+                    <ul>
+                        <li>
+                            {{$q}}
+                        </li>
+                    </ul>
+                {{end}}
+                </div>
+               
+            {{end}}
+       </div>
+       
     </div>
     <div class="footer">
 
