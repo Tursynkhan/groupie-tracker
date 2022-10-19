@@ -81,10 +81,11 @@ h1{
 .cards__content__sections__members .members-label{
     color: rgb(158, 158, 158);
 }
+.cards:hover{
+    cursor: pointer;
+    background-color: rgba(60, 62, 68,0.7);
+}
 .cards__content__sections__name h2:hover{
     color: orange;
-    cursor: pointer;
-}
-.cards:hover{
     cursor: pointer;
 }
