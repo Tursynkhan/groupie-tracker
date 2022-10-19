@@ -8,46 +8,63 @@
     <title>Artist</title>
 </head>
 <body>
-    <div class="header">
-        <h1>{{.Name}}</h1>
-    </div>
     <div class="container">
-        <div class="date">
-            {{.CreationDate}}
+        <div class="header">
+            <h1>{{.Name}}</h1>
         </div>
-        <div class="album">
-            {{.FirstAlbum}}
-        </div>
-       <div class="members">
-         <ul>
-            <label>Members</label>
-            {{range .Members}}
-            <li>
-                {{.}}
-            </li>
-            {{end}}
-        </ul>
-            
-       </div>
-       <div class="locatioins">
-            {{range $k,$v :=$.DatesLocation}}
-                {{$k}}
-                <div class="dates">
-                    {{range $_,$q:= $v}}
-                    <ul>
-                        <li>
-                            {{$q}}
-                        </li>
-                    </ul>
-                {{end}}
+        <div class="container__content">
+
+            <div class="content__left">
+                <img src="{{.Image}}" alt="logo">
+            </div>
+            <div class="content__right">
+    
+                <div class="album">
+                    <span class="text-gray">First Album:</span>
+                    {{.FirstAlbum}}
                 </div>
-               
-            {{end}}
+                <div class="date">
+                    <span class="text-gray">Date:</span>
+                    {{.CreationDate}}
+                </div>
+               <div class="members">
+                   <ul>
+                     <span class="text-gray">Members:</span>
+                    {{range .Members}}
+                    <li>
+                        {{.}}
+                    </li>
+                    {{end}}
+                </ul>
+                    
+            </div>
+        </div>
+
+
        </div>
-       
+       <div class="container__location">
+            {{range $k,$v :=$.DatesLocation}}
+            <div class="section-location">
+                <div class="section-location-name">
+                    <span class="text-gray">Locations:</span>
+                        {{$k}}
+                </div>    
+                <div class="section-location-dates">
+                    <span class="text-gray">Dates:</span>
+                    <ul>
+                        {{range $_,$q:= $v}}
+                        <li>
+                            {{$q}}    
+                        </li>
+                        {{end}}
+                    </ul>
+                
+                    </div>           
+            </div>
+            {{end}}
+       </div>   
     </div>
     <div class="footer">
-
     </div>
 </body>
 </html>

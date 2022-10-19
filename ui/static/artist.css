@@ -1,0 +1,92 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    background-color: #202329;
+}
+.container{
+    width: 900px;
+    height: 850px;
+    margin: 0 auto;
+    margin-top: 50px;
+    background-color: #3C3E44;
+    border-radius: 8px;
+    color:rgb(245,245,245);
+}
+.header{
+    padding: 10px 0;
+}
+h1{
+    text-align: center;
+    color:rgb(245,245,245);
+
+}
+.container__content{
+    display: flex;
+}
+.content__left{
+    width: 40%;
+    margin-left: 20px;
+}
+.content__left img{
+    height: 200px;
+    width: 200px;
+    opacity:0.8;
+    border-radius: 8px;
+}
+.content__right{
+    width: 50%;
+}
+.content__right .album{
+    margin-bottom: 10px;
+}
+.content__right .text-gray{
+    color:rgb(158, 158, 158);
+}
+.content__right .members ul{
+    padding: 0;
+}
+.content__right .members li{
+    padding-left: 10px;
+    list-style: circle;
+    list-style-position: inside;
+}
+.container__location{
+    height: 600px;
+    padding : 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.section-location{
+    width: 50%;
+    margin-bottom: 15px;
+}
+.container__location .text-gray{
+    color:rgb(158, 158, 158);
+}
+.section-location-name{
+    margin-bottom: 5px;
+}
+.container__location .dates{
+    color:rgb(245,245,245);
+}
+
+.section-location-dates .date{
+    margin: 0 10px;
+}
+.section-location-dates ul{
+    padding: 0; 
+    margin: 5px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.section-location-dates li{
+    margin: 2px 20px;
+    list-style: square;
+}
+
+.section-location-dates li::marker {
+    color: rgb(158, 158, 158);
+}
