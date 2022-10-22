@@ -24,7 +24,7 @@ func (h *Handler) artist(w http.ResponseWriter, r *http.Request) {
 	}
 
 	id, err := strconv.Atoi(r.URL.Query().Get("id"))
-	if err != nil || id < 1 || id > 52 {
+	if err != nil || id < 1 {
 		h.ErrorHandler(w, r, errStatus{http.StatusNotFound, http.StatusText(http.StatusNotFound)})
 		return
 	}

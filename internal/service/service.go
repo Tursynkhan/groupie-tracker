@@ -5,24 +5,30 @@ import (
 	"log"
 	"main/internal/models"
 	"net/http"
+	"strings"
 )
 
 type Service struct{}
 
-func (s *Service) Group() ([]models.Artists, error) {
-	url := "https://groupietrackers.herokuapp.com/api/artists"
+const (
+	artistUrl   = "https://groupietrackers.herokuapp.com/api/artists"
+	IdArtist    = "https://groupietrackers.herokuapp.com/api/artists/"
+	relationUrl = "https://groupietrackers.herokuapp.com/api/relation/"
+)
+
+func (s *Service) Allartist() ([]models.Artists, error) {
 	var artist []models.Artists
 
 	client := http.Client{}
 
-	res, err := client.Get(url)
+	res, err := client.Get(artistUrl)
 	if err != nil {
-		log.Fatal(err)
+		return nil, err
 	}
 	defer res.Body.Close()
 
 	if err := json.NewDecoder(res.Body).Decode(&artist); err != nil {
-		log.Fatal(err)
+		return nil, err
 	}
 	// body, err := ioutil.ReadAll(res.Body)
 	// if err != nil {
@@ -36,7 +42,7 @@ func (s *Service) Group() ([]models.Artists, error) {
 }
 
 func (s *Service) IdArtist(url string) (models.Artists, error) {
-	concatUrl := "https://groupietrackers.herokuapp.com/api/artists/" + url
+	concatUrl := IdArtist + url
 	var artist models.Artists
 	client := http.Client{}
 	res1, err := client.Get(concatUrl)
@@ -53,8 +59,8 @@ func (s *Service) IdArtist(url string) (models.Artists, error) {
 }
 
 func (s *Service) Relations(url string) (models.Relations, error) {
-	concatUrl := "https://groupietrackers.herokuapp.com/api/relation/" + url
-	var artist models.Relations
+	concatUrl := relationUrl + url
+	var relation models.Relations
 	client := http.Client{}
 	res, err := client.Get(concatUrl)
 	if err != nil {
@@ -62,9 +68,22 @@ func (s *Service) Relations(url string) (models.Relations, error) {
 	}
 	defer res.Body.Close()
 
-	if err := json.NewDecoder(res.Body).Decode(&artist); err != nil {
+	if err := json.NewDecoder(res.Body).Decode(&relation); err != nil {
 		log.Fatal(err)
 	}
+	ChangeLocations := ChangeStr(relation.DatesLocations)
+	relation.DatesLocations = ChangeLocations
+	return relation, nil
+}
 
-	return artist, nil
+func ChangeStr(DatesLocation map[string][]string) map[string][]string {
+	for i, v := range DatesLocation {
+		temp := i
+		temp = strings.ReplaceAll(temp, "-", ", ")
+		temp = strings.ReplaceAll(temp, "_", " ")
+		temp = strings.Title(temp)
+		delete(DatesLocation, i)
+		DatesLocation[temp] = v
+	}
+	return DatesLocation
 }

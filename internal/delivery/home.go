@@ -21,8 +21,10 @@ func (h *Handler) home(w http.ResponseWriter, r *http.Request) {
 		h.ErrorHandler(w, r, errStatus{http.StatusInternalServerError, http.StatusText(http.StatusInternalServerError)})
 		return
 	}
-	res, Error := h.service.Group()
-	if Error != nil {
+	res, err := h.service.Allartist()
+	if err != nil {
+		h.ErrorHandler(w, r, errStatus{http.StatusInternalServerError, http.StatusText(http.StatusInternalServerError)})
+		return
 	}
 	err = ts.Execute(w, res)
 	if err != nil {

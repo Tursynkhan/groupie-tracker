@@ -14,15 +14,13 @@
     <div class="container">
         {{range  .}}
         <div class="cards">
-            <a href="/open?id={{.Id}}">
+            <a class="cards-link" href="/open?id={{.Id}}">
                 <div class="cards__image">
-                     <img src="{{.Image}}" alt="logo"> </a>
+                     <img src="{{.Image}}" alt="logo">
                 </div>
                 <div class="cards__contents">
                      <div class="cards__content__sections__name">
-                             <a href="/open?id={{.Id}}">
-                                 <h2>{{.Name}}</h2>
-                             </a> 
+                        <h2>{{.Name}}</h2>
                      </div>
                 </div>
             </a>

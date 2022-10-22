@@ -8,61 +8,56 @@
     <title>Artist</title>
 </head>
 <body>
+    <div class="header">
+        <h1>Groupie-tracker</h1>
+    </div>
     <div class="container">
-        <div class="header">
-            <h1>{{.Name}}</h1>
+        <div class="logo">
+            <img src="{{.Image}}">
         </div>
-        <div class="container__content">
-
-            <div class="content__left">
-                <img src="{{.Image}}" alt="logo">
+        <div class="content__info">
+            <div class="header__content__info">
+                {{.Name}}
             </div>
-            <div class="content__right">
-    
-                <div class="album">
-                    <span class="text-gray">First Album:</span>
-                    {{.FirstAlbum}}
-                </div>
-                <div class="date">
-                    <span class="text-gray">Date:</span>
-                    {{.CreationDate}}
-                </div>
-               <div class="members">
-                   <ul>
-                     <span class="text-gray">Members:</span>
-                    {{range .Members}}
-                    <li>
-                        {{.}}
-                    </li>
-                    {{end}}
-                </ul>
-                    
+            <div class="date__content__info">
+                <span class="header__content__info-date">
+                    CreationDate:
+                </span>
+                {{.CreationDate}}
+            </div>
+            <div class="album__content__info">
+                <span class="header__content__info-album">First Album:</span>
+                {{.FirstAlbum}}
             </div>
         </div>
-
-
-       </div>
-       <div class="container__location">
-            {{range $k,$v :=$.DatesLocation}}
-            <div class="section-location">
-                <div class="section-location-name">
-                    <span class="text-gray">Locations:</span>
-                        {{$k}}
-                </div>    
-                <div class="section-location-dates">
-                    <span class="text-gray">Dates:</span>
-                    <ul>
-                        {{range $_,$q:= $v}}
-                        <li>
-                            {{$q}}    
-                        </li>
-                        {{end}}
-                    </ul>
-                
-                    </div>           
+        <h2>Members</h2>
+        <div class="members">
+            {{range .Members}}
+            <div class="member-name">
+                {{.}}
             </div>
             {{end}}
-       </div>   
+        </div>
+        <h2>Concert List</h2>
+        <div class="content__concert">
+            {{range $city,$date:=$.DatesLocation}}
+            <div class="location-date">
+                <div class="city-info">
+                    <h3>Location</h3>
+                    <p class="city">
+                        {{$city}}
+                    </p>
+                </div>
+                <div class="date-info">
+                    {{range $_,$elem:=$date}}
+                    <div class="date">
+                        {{$elem}}
+                    </div>
+                    {{end}}
+                </div>
+            </div>
+            {{end}}
+        </div>
     </div>
     <div class="footer">
     </div>

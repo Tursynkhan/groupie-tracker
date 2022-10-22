@@ -4,89 +4,72 @@
 body{
     background-color: #202329;
 }
+.header h1{
+    text-align: center;
+    color:rgb(245,245,245);
+}
 .container{
     width: 900px;
-    height: 900px;
     margin: 0 auto;
-    margin-top: 50px;
     background-color: #3C3E44;
     border-radius: 8px;
     color:rgb(245,245,245);
 }
-.header{
-    padding: 10px 0;
-}
-h1{
-    text-align: center;
-    color:rgb(245,245,245);
-
-}
-.container__content{
+.logo{
     display: flex;
+    justify-content: center;
+    padding:15px 0;
 }
-.content__left{
-    width: 40%;
-    margin-left: 20px;
-}
-.content__left img{
+.logo img{
     height: 200px;
     width: 200px;
-    opacity:0.8;
-    border-radius: 8px;
+    border-radius: 5px;
 }
-.content__right{
-    width: 50%;
+.header__content__info{
+    display: flex;
+    justify-content: center;
 }
-.content__right .album{
-    margin-bottom: 10px;
+.date__content__info{
+    display: flex;
+    justify-content: center;
 }
-.content__right .text-gray{
-    color:rgb(158, 158, 158);
+.album__content__info{
+    display: flex;
+    justify-content: center;
 }
-.content__right .members ul{
+h2{
+   text-align: center; 
+}
+.members{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.location-date{
+    border-top: 10px #202329 solid ;
+}
+.city-info{
+    width: 80%;
+    margin: 0 auto;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px white dashed;
+}
+.city-info h3{
+    display: inline;
     padding: 0;
+    margin: 0;
 }
-.content__right .members li{
-    padding-left: 10px;
-    list-style: circle;
-    list-style-position: inside;
+.city-info .city{
+    display: inline;
+    padding: 0;
+    margin: 0;
 }
-.container__location{
-    height: 600px;
-    padding : 20px;
+.date-info{
+    padding: 10px 0;
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
-    flex-wrap: wrap;
-}
-.section-location{
-    width: 50%;
-    margin-bottom: 15px;
-}
-.container__location .text-gray{
-    color:rgb(158, 158, 158);
-}
-.section-location-name{
-    margin-bottom: 5px;
-}
-.container__location .dates{
-    color:rgb(245,245,245);
-}
-
-.section-location-dates .date{
-    margin: 0 10px;
-}
-.section-location-dates ul{
-    padding: 0; 
-    margin: 5px;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.section-location-dates li{
-    margin: 2px 20px;
-    list-style: square;
-}
-
-.section-location-dates li::marker {
-    color: rgb(158, 158, 158);
 }
