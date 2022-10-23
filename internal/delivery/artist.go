@@ -29,10 +29,10 @@ func (h *Handler) artist(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	url := strconv.Itoa(id)
+	idUrl := strconv.Itoa(id)
 
-	res1, err := h.service.IdArtist(url)
-	res2, err := h.service.Relations(url)
+	res1, err := h.service.IdArtist(idUrl)
+	res2, err := h.service.Relations(idUrl)
 
 	res1.DatesLocation = res2.DatesLocations
 

@@ -1,6 +1,18 @@
 *{
     box-sizing: border-box;
 }
+@font-face {
+    font-family: "didot";
+    src: url(./font/Didot/didot_bold.otf);
+}
+@font-face {
+    font-family: "bodoni";
+    src: url(./font/bodoni/BodoniFLF-Bold.ttf);
+}
+@font-face {
+    font-family: "poster";
+    src: url(./font/movie-poster-font/MoviePosterPersonalUse-axyeE.ttf);
+}
 html{
     height: 100%;
 }
@@ -8,14 +20,23 @@ body{
     margin:0;
 }
 h1{
+    font-family:"poster";
+    font-size: 64px;
+    color:rgb(32, 35, 41);
     text-align: center;
+    
 }
+h2{
+    font-family: "didot";
+    font-size: 30px;
+}
+
 .header{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 150px;
+    height: 180px;
 }
 .container{
     display: flex;
