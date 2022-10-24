@@ -15,7 +15,7 @@ git clone git@git.01.alem.school:tursynkhan/groupie-tracker.git
 ## Usage
 
 ```bash
-  go run ./cmd/web
+  go run ./cmd/web/
 ```
 
 ## Creators

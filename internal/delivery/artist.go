@@ -32,8 +32,15 @@ func (h *Handler) artist(w http.ResponseWriter, r *http.Request) {
 	idUrl := strconv.Itoa(id)
 
 	res1, err := h.service.IdArtist(idUrl)
+	if err != nil {
+		h.ErrorHandler(w, r, errStatus{http.StatusInternalServerError, http.StatusText(http.StatusInternalServerError)})
+		return
+	}
 	res2, err := h.service.Relations(idUrl)
-
+	if err != nil {
+		h.ErrorHandler(w, r, errStatus{http.StatusInternalServerError, http.StatusText(http.StatusInternalServerError)})
+		return
+	}
 	res1.DatesLocation = res2.DatesLocations
 
 	err = ts.Execute(w, res1)

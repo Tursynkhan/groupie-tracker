@@ -41,25 +41,25 @@ func (s *Service) Allartist() ([]models.Artists, error) {
 	return artist, nil
 }
 
-func (s *Service) IdArtist(url string) (models.Artists, error) {
-	concatUrl := IdArtist + url
+func (s *Service) IdArtist(idurl string) (models.Artists, error) {
+	concatUrl := IdArtist + idurl
 	var artist models.Artists
 	client := http.Client{}
 	res1, err := client.Get(concatUrl)
 	if err != nil {
-		log.Fatal(err)
+		return artist, err
 	}
 	defer res1.Body.Close()
 
 	if err := json.NewDecoder(res1.Body).Decode(&artist); err != nil {
-		log.Fatal(err)
+		return artist, err
 	}
 
 	return artist, nil
 }
 
-func (s *Service) Relations(url string) (models.Relations, error) {
-	concatUrl := relationUrl + url
+func (s *Service) Relations(idUrl string) (models.Relations, error) {
+	concatUrl := relationUrl + idUrl
 	var relation models.Relations
 	client := http.Client{}
 	res, err := client.Get(concatUrl)
